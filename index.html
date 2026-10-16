@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="fr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bLaNk — Agence digitale · Branding &amp; Création de sites</title>
+    <meta
+      name="description"
+      content="bLaNk est une agence digitale (fictive). Branding, design et développement web : des marques et des sites qui laissent une trace."
+    />
+    <meta name="theme-color" content="#ffffff" id="meta-theme-color" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Le footer utilise le wordmark texte "bLaNk" : remplace-le par ton logo Figma (SVG dans /public/logo.svg) si besoin -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="antialiased">
+
+    <div id="progress" aria-hidden="true"></div>
+
+    <main>
+      <!-- ============ LANDING ============ -->
+      <section id="hero" data-section>
+        <h1 class="sr-only">bLaNk — agence digitale, branding et création de sites</h1>
+        <div class="landing-compo">
+          <img
+            class="landing-flower landing-flower--mirror"
+            src="/assets/fleur.png"
+            alt="Fleurs dessinées à l'encre noire"
+            width="254"
+            height="428"
+          />
+          <img
+            class="landing-logo"
+            src="/assets/logo.png"
+            alt="bLaNk"
+            width="264"
+            height="91"
+          />
+          <img
+            class="landing-flower"
+            src="/assets/fleur.png"
+            alt=""
+            aria-hidden="true"
+            width="254"
+            height="428"
+          />
+        </div>
+        <a
+          class="landing-arrow"
+          href="#ink-journey"
+          data-scroll-to="#ink-journey"
+          aria-label="Défiler vers la suite"
+        >
+          <svg width="18" height="34" viewBox="0 0 18 34" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 1v29" />
+            <path d="M2.5 23.5 9 30l6.5-6.5" />
+          </svg>
+        </a>
+      </section>
+
+      <!-- ============ ENCRE (séquence scroll Three.js, pur visuel) ============ -->
+      <section id="ink-journey" aria-label="Traversée d'encre">
+        <div class="ink-sticky">
+          <div id="ink-canvas" aria-hidden="true"></div>
+        </div>
+        <div class="ink-spacer" aria-hidden="true"></div>
+        <div class="ink-about" id="about">
+          <div class="container-x">
+            <p class="about-kicker" data-reveal>About us</p>
+            <h2 class="about-title" data-reveal>Un studio indépendant, pas une usine à sites.</h2>
+            <p class="about-text" data-reveal>
+              bLaNk dessine des marques et des sites qui laissent une trace.
+              Branding, design, développement : une petite équipe, des choix
+              radicaux, zéro superflu. Chaque projet est une page blanche —
+              on y verse l'encre avec intention.
+            </p>
+            <a href="#contact" data-scroll-to="#contact" class="btn-square" data-reveal data-magnetic>Démarrer un projet</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ OFFRE ============ -->
+      <section id="offre" data-section>
+        <div class="container-x">
+          <div class="section-head" data-reveal>
+            <span class="section-index">01</span>
+            <h2 class="section-title">Notre offre</h2>
+            <span class="section-line" aria-hidden="true"></span>
+          </div>
+          <p class="section-sub" data-reveal>
+            Quatre expertises, une seule exigence : l'essentiel, sans compromis.
+          </p>
+          <div class="offer-grid" data-reveal-group>
+            <article class="offer-card">
+              <span class="offer-num">01</span>
+              <h3>Identité de marque</h3>
+              <p>Logo, système visuel, ton de voix, guidelines. Des marques qui se reconnaissent entre mille.</p>
+              <ul><li>Direction artistique</li><li>Logotype &amp; système</li><li>Guidelines</li></ul>
+            </article>
+            <article class="offer-card">
+              <span class="offer-num">02</span>
+              <h3>Design &amp; développement web</h3>
+              <p>Sites vitrines, e-commerce, design systems. Rapides, accessibles, pensés pour convertir.</p>
+              <ul><li>UI / UX design</li><li>Développement sur-mesure</li><li>E-commerce</li></ul>
+            </article>
+            <article class="offer-card">
+              <span class="offer-num">03</span>
+              <h3>Motion &amp; 3D</h3>
+              <p>WebGL, shaders, micro-interactions. Le mouvement comme langage, jamais comme décoration.</p>
+              <ul><li>WebGL / shaders</li><li>Micro-interactions</li><li>Showreels</li></ul>
+            </article>
+            <article class="offer-card">
+              <span class="offer-num">04</span>
+              <h3>Contenu &amp; référencement</h3>
+              <p>Copywriting, SEO technique, performance. Être vu, être compris, être choisi.</p>
+              <ul><li>Copywriting</li><li>SEO technique</li><li>Analytics</li></ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PROJETS ============ -->
+      <section id="projets" data-section>
+        <div class="container-x">
+          <div class="section-head" data-reveal>
+            <span class="section-index">02</span>
+            <h2 class="section-title">Projets sélectionnés</h2>
+            <span class="section-line" aria-hidden="true"></span>
+          </div>
+          <p class="section-sub" data-reveal>
+            Une sélection de collaborations récentes. Visuels de démonstration —
+            remplace-les par tes assets (voir <code>docs/depth-map.md</code> pour l'effet depth-map).
+          </p>
+          <div class="work-grid" data-reveal-group>
+            <article class="work-card">
+              <div class="work-visual work-visual--a" data-parallax-wrap>
+                <img data-parallax src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E" alt="" aria-hidden="true" />
+                <span class="work-index">01</span>
+              </div>
+              <div class="work-info">
+                <h3>Maison Ora</h3>
+                <p>E-commerce &amp; identité — 2026</p>
+              </div>
+            </article>
+            <article class="work-card">
+              <div class="work-visual work-visual--b" data-parallax-wrap>
+                <img data-parallax src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E" alt="" aria-hidden="true" />
+                <span class="work-index">02</span>
+              </div>
+              <div class="work-info">
+                <h3>Studio Nord</h3>
+                <p>Site vitrine &amp; 3D — 2025</p>
+              </div>
+            </article>
+            <article class="work-card">
+              <div class="work-visual work-visual--c" data-parallax-wrap>
+                <img data-parallax src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E" alt="" aria-hidden="true" />
+                <span class="work-index">03</span>
+              </div>
+              <div class="work-info">
+                <h3>Papier Blanc</h3>
+                <p>Éditorial &amp; branding — 2025</p>
+              </div>
+            </article>
+            <article class="work-card">
+              <div class="work-visual work-visual--d" data-parallax-wrap>
+                <img data-parallax src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E" alt="" aria-hidden="true" />
+                <span class="work-index">04</span>
+              </div>
+              <div class="work-info">
+                <h3>Kiosque</h3>
+                <p>Produit &amp; design system — 2024</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section id="contact" data-section>
+        <div class="container-x">
+          <div class="section-head" data-reveal>
+            <span class="section-index">03</span>
+            <h2 class="section-title">Contact</h2>
+            <span class="section-line" aria-hidden="true"></span>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-infos" data-reveal>
+              <p class="contact-title">Un projet en tête ?<br />Parlons-en.</p>
+              <ul>
+                <li><span>Email</span><a href="mailto:hello@blank.studio">hello@blank.studio</a></li>
+                <li><span>Téléphone</span><a href="tel:+33184000000">+33 1 84 00 00 00</a></li>
+                <li><span>Studio</span>Paris 11<sup>e</sup>, France</li>
+                <li><span>Réseaux</span><span class="socials"><a href="#" rel="noopener">Instagram</a> · <a href="#" rel="noopener">Behance</a> · <a href="#" rel="noopener">LinkedIn</a></span></li>
+              </ul>
+            </div>
+            <form id="contact-form" data-reveal novalidate>
+              <div class="field">
+                <label for="f-name">Nom</label>
+                <input id="f-name" name="name" type="text" placeholder="Jeanne Dupont" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input id="f-email" name="email" type="email" placeholder="jeanne@studio.fr" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="f-budget">Budget estimé</label>
+                <select id="f-budget" name="budget">
+                  <option value="<5k">Moins de 5 k€</option>
+                  <option value="5-15k" selected>5 – 15 k€</option>
+                  <option value="15-50k">15 – 50 k€</option>
+                  <option value="50k+">Plus de 50 k€</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-msg">Votre projet</label>
+                <textarea id="f-msg" name="message" rows="5" placeholder="Contexte, objectifs, délais…" required></textarea>
+              </div>
+              <button type="submit" class="btn btn--primary btn--full" data-magnetic>
+                <span class="btn-label">Envoyer le brief</span>
+              </button>
+              <p id="form-status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer id="site-footer" data-section>
+      <div class="container-x">
+        <div class="footer-top" data-reveal>
+          <a href="#hero" data-scroll-to="#hero" class="footer-cta">Un projet ? <em>bLaNk</em></a>
+        </div>
+        <div class="footer-word" aria-hidden="true">bLaNk</div>
+        <div class="footer-bottom">
+          <span>© <span id="year">2026</span> bLaNk — agence fictive de démonstration</span>
+          <nav aria-label="Navigation pied de page">
+            <a href="#about" data-scroll-to="#about">About</a>
+            <a href="#offre" data-scroll-to="#offre">Offre</a>
+            <a href="#projets" data-scroll-to="#projets">Projets</a>
+            <a href="#contact" data-scroll-to="#contact">Contact</a>
+          </nav>
+          <a href="#hero" data-scroll-to="#hero">Retour en haut ↑</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
