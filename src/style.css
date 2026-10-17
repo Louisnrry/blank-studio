@@ -202,7 +202,9 @@ section[data-section] {
 /* ---------- Encre (séquence scroll Three.js, pur visuel) ---------- */
 #ink-journey {
   position: relative;
-  background: #fff;
+  /* Sombre : quand le canvas sticky libère la place en fin de zone, le fond
+     qui apparaît est de la même famille que l'encre — aucune couture. */
+  background: #060607;
 }
 .ink-sticky {
   position: sticky;
@@ -245,7 +247,14 @@ section[data-section] {
   text-transform: uppercase;
   color: rgba(244, 244, 242, 0.6);
   margin: 0 0 1.5rem;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.6),
+    0 2px 10px rgba(0, 0, 0, 0.55);
 }
+/* Halo sombre à trois couches : une ombre de contact serrée (définit le
+   bord des lettres), une moyenne, et un large halo qui assombrit le fond.
+   Sur l'encre noire, un halo noir est invisible — il ne coûte donc rien
+   visuellement. Sur l'encre blanche, c'est lui qui garantit la lecture. */
 .about-title {
   font-family: var(--font-display);
   font-weight: 600;
@@ -255,14 +264,20 @@ section[data-section] {
   max-width: 16em;
   margin: 0 auto 1.5rem;
   text-wrap: balance;
-  text-shadow: 0 1px 28px rgba(0, 0, 0, 0.6);
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.55),
+    0 2px 10px rgba(0, 0, 0, 0.55),
+    0 6px 34px rgba(0, 0, 0, 0.72);
 }
 .about-text {
   color: rgba(244, 244, 242, 0.72);
   line-height: 1.7;
   max-width: 38rem;
   margin: 0 auto 2.5rem;
-  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.6);
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.6),
+    0 2px 12px rgba(0, 0, 0, 0.6),
+    0 4px 26px rgba(0, 0, 0, 0.62);
 }
 .btn-square {
   display: inline-flex;
