@@ -1,7 +1,7 @@
 # blank® — one-pager agence (Vite + Three.js + GSAP)
 
 Agence digitale fictive : branding & création de sites.
-One-pager : landing → traversée d'encre → about → projets → contact + formulaire → footer.
+One-pager : landing → traversée d'encre → about → projets → offres → à propos détaillé → contact + formulaire → footer.
 
 ## Stack
 
@@ -37,9 +37,9 @@ Chaque push sur `main` redéploie automatiquement.
 ## Structure
 
 ```
-index.html            # landing, encre, about, projets, contact, footer
+index.html            # landing, encre, about, projets, offres, à propos, contact, footer
 public/favicon.svg    # favicon placeholder (□)
-public/assets/        # fleur.png + logo.png (landing, noir & blanc)
+public/assets/        # fleur.png + logo.png (landing) + keep it simple.png (plaque des barres)
 src/main.js           # orchestration
 src/style.css         # design system (thèmes, sections, boutons…)
 src/js/theme.js       # clair / sombre (data-theme + localStorage)
@@ -47,6 +47,9 @@ src/js/smooth.js      # Lenis + ancres fluides
 src/js/hero-shader.js # shader encre fullscreen
 src/js/reveals.js     # transitions inter-sections, parallaxe, progression
 src/js/ink-journey.js # traversée d'encre + about sur nuages vivants (scrub réversible)
+src/js/projects-stack.js # pile de projets : cartes centrées, arrivée agrandie puis calage
+src/js/offres.js      # section offres figée : trois offres remplacées au fil du scroll
+src/js/studio.js      # à propos détaillé : trois barres (texte dedans) qui sortent du bord gauche
 src/js/nav.js         # header, menu mobile, boutons magnétiques
 src/js/intro.js       # ouverture : tige dessinée → fleurs → logo → flèche (~4,5 s)
 src/js/contact.js     # formulaire démo (sans backend)
@@ -64,6 +67,10 @@ docs/depth-map.md     # guide effet depth-map (préparé, non implémenté)
 - **Thème** : variables dans `src/style.css` (`html[data-theme="light"]`).
 - **Visuels projets** : chaque carte a un placeholder inline (`data:image/svg+xml` sur
   `.project-photo img` dans `index.html`) — remplace simplement le `src` par la vraie photo.
+- **Plaque « keep it simple. »** : l'asset `public/assets/keep it simple.png` (lettres
+  foncées sur fond transparent, 448 × 243) est posé tel quel au bout de chaque barre, sur
+  le blanc. Sa taille dans `src/style.css` (`--plaque-h`, `--plaque-w`) suit son rapport :
+  si tu remplaces le fichier, garde le même cadrage ou ajuste `1.8436` en conséquence.
 - **Formulaire** : `src/js/contact.js` simule l'envoi (900 ms) ; branche ton
   backend / Formspree / API à l'endroit indiqué.
 - **Depth-map** : voir `docs/depth-map.md` (guide complet, en attente de ton go).

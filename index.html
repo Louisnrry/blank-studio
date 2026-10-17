@@ -84,95 +84,229 @@
         </div>
       </section>
 
-      <!-- ============ PROJETS ============ -->
-      <section id="projets" data-section>
-        <!-- Logo collé en haut à gauche de l'écran pendant toute la traversée
-             de la section (voir .projects-logo). -->
+      <!-- ============ PROJETS + OFFRES + À PROPOS ============ -->
+      <!-- Les trois sections partagent une même zone : le logo peut ainsi
+           rester collé en haut à gauche de l'écran de l'une à l'autre (voir
+           .projects-logo) sans jamais apparaître en double. -->
+      <div class="logo-zone">
         <div class="projects-logo">
           <img src="/assets/logo.png" alt="bLaNk" />
         </div>
 
-        <!-- Pile de projets. Toutes les cartes sont en position: sticky,
-             centrées verticalement avec le MÊME décalage : chacune recouvre
-             donc ENTIÈREMENT la précédente. La carte entrante arrive agrandie
-             et reprend sa taille exactement au moment où elle se cale — c'est
-             l'effet de la référence (facteur --card-zoom, piloté par
-             src/js/projects-stack.js). Le texte vit sous la photo, dans la
-             carte : il reste lisible pendant tout le règne de la carte. -->
-        <div class="projects-stack">
-          <article class="project-card">
-            <div class="project-inner">
-              <figure class="project-photo">
-                <!-- Remplacer le src par la vraie photo du projet. -->
-                <img
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
-                  alt="" aria-hidden="true" />
-              </figure>
-              <div class="project-meta">
-                <div class="project-meta-head">
-                  <span class="project-index">01</span>
-                  <h3 class="project-name">Projet Alpha</h3>
-                  <p class="project-tag">Identité visuelle · 2026</p>
+        <!-- ============ PROJETS ============ -->
+        <section id="projets" data-section>
+          <!-- Pile de projets. Toutes les cartes sont en position: sticky,
+               centrées verticalement avec le MÊME décalage : chacune recouvre
+               donc ENTIÈREMENT la précédente. La carte entrante arrive agrandie
+               et reprend sa taille exactement au moment où elle se cale — c'est
+               l'effet de la référence (facteur --card-zoom, piloté par
+               src/js/projects-stack.js). Le texte vit sous la photo, dans la
+               carte : il reste lisible pendant tout le règne de la carte. -->
+          <div class="projects-stack">
+            <article class="project-card">
+              <div class="project-inner">
+                <figure class="project-photo">
+                  <!-- Remplacer le src par la vraie photo du projet. -->
+                  <img
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
+                    alt="" aria-hidden="true" />
+                </figure>
+                <div class="project-meta">
+                  <div class="project-meta-head">
+                    <span class="project-index">01</span>
+                    <h3 class="project-name">Projet Alpha</h3>
+                    <p class="project-tag">Identité visuelle · 2026</p>
+                  </div>
+                  <p class="project-text">
+                    Texte de démonstration. Ce paragraphe ne raconte rien et ne sert qu'à
+                    occuper la place prévue en attendant le vrai contenu. Il est volontairement
+                    neutre, sans intérêt, pour qu'on juge la mise en page et pas les mots.
+                  </p>
                 </div>
-                <p class="project-text">
-                  Texte de démonstration. Ce paragraphe ne raconte rien et ne sert qu'à
-                  occuper la place prévue en attendant le vrai contenu. Il est volontairement
-                  neutre, sans intérêt, pour qu'on juge la mise en page et pas les mots.
-                </p>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-inner">
+                <figure class="project-photo">
+                  <img
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
+                    alt="" aria-hidden="true" />
+                </figure>
+                <div class="project-meta">
+                  <div class="project-meta-head">
+                    <span class="project-index">02</span>
+                    <h3 class="project-name">Projet Beta</h3>
+                    <p class="project-tag">Site vitrine · 2025</p>
+                  </div>
+                  <p class="project-text">
+                    Deuxième paragraphe de démonstration. Même chose : aucune information,
+                    uniquement de la matière pour vérifier l'alignement, les marges et le
+                    comportement du texte sous la photo.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-inner">
+                <figure class="project-photo">
+                  <img
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
+                    alt="" aria-hidden="true" />
+                </figure>
+                <div class="project-meta">
+                  <div class="project-meta-head">
+                    <span class="project-index">03</span>
+                    <h3 class="project-name">Projet Gamma</h3>
+                    <p class="project-tag">Édition · 2025</p>
+                  </div>
+                  <p class="project-text">
+                    Troisième et dernier paragraphe de démonstration. Rien à lire ici non plus.
+                    Quand tu m'enverras les photos, je remplacerai les fichiers et j'écrirai les
+                    vrais textes à leur place.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Réserve de scroll. Sans elle, la dernière carte n'a aucune course
+                 de sticky et les trois se décollent dès que la pile est complète.
+                 Avec elle, la pile reste figée un moment avant de repartir. -->
+            <div class="projects-stack-tail" aria-hidden="true"></div>
+          </div>
+        </section>
+
+        <!-- ============ OFFRES ============ -->
+        <section id="offres" data-section>
+          <!-- Section figée : l'écran reste collé pendant toute la traversée de
+               .offres-zone et les trois offres se remplacent au fil du scroll.
+               Le texte est posé à même le fond blanc (pas de carte) ; seule la
+               card de droite est un panneau. Défilement piloté par
+               src/js/offres.js, progression lue dans .offres-rail. -->
+          <div class="offres-zone">
+            <div class="offres-sticky">
+              <!-- Progression : un trait par offre, rempli au fil du scroll. -->
+              <div class="offres-rail" aria-hidden="true">
+                <span class="offres-tick"><i></i></span>
+                <span class="offres-tick"><i></i></span>
+                <span class="offres-tick"><i></i></span>
+              </div>
+
+              <div class="container-x offres-grid">
+                <!-- Textes, directement sur le fond. -->
+                <div class="offres-text">
+                  <article class="offre is-active">
+                    <h3 class="offre-name">Refonte de site</h3>
+                    <p class="offre-text">
+                      Un site n'est pas une brochure, c'est un lieu. On rouvre les murs, on
+                      déplace la lumière, on trace des chemins courts. Le visiteur arrive, comprend
+                      et repart avec une idée claire de ce que vous faites.
+                    </p>
+                  </article>
+                  <article class="offre">
+                    <h3 class="offre-name">Branding</h3>
+                    <p class="offre-text">
+                      Une marque tient à quelques décisions tenues longtemps. On pose un nom, un
+                      dessin, des règles simples et on s'y tient. Le reste suit tout seul, sur
+                      n'importe quel support, sans mode d'emploi.
+                    </p>
+                  </article>
+                  <article class="offre">
+                    <h3 class="offre-name">Communication</h3>
+                    <p class="offre-text">
+                      Parler au bon endroit, au bon moment, sans crier. On cadre le discours,
+                      on choisit les canaux, on coupe ce qui ne sert à rien et on mesure ce qui
+                      compte vraiment.
+                    </p>
+                  </article>
+                </div>
+
+                <!-- La card, à droite : un visuel par offre.
+                     Remplacer les src par les vrais visuels. -->
+                <div class="offres-card">
+                  <figure class="offre-visual is-active">
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
+                      alt="" aria-hidden="true" />
+                  </figure>
+                  <figure class="offre-visual">
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
+                      alt="" aria-hidden="true" />
+                  </figure>
+                  <figure class="offre-visual">
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
+                      alt="" aria-hidden="true" />
+                  </figure>
+                </div>
               </div>
             </div>
-          </article>
+          </div>
+        </section>
 
-          <article class="project-card">
-            <div class="project-inner">
-              <figure class="project-photo">
-                <img
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
-                  alt="" aria-hidden="true" />
-              </figure>
-              <div class="project-meta">
-                <div class="project-meta-head">
-                  <span class="project-index">02</span>
-                  <h3 class="project-name">Projet Beta</h3>
-                  <p class="project-tag">Site vitrine · 2025</p>
+        <!-- ============ À PROPOS (détail) ============ -->
+        <section id="studio" aria-label="À propos du studio">
+          <!-- Écran figé, comme les offres : les trois barres noires sortent du
+               bord gauche l'une après l'autre, une par tiers du scroll
+               (src/js/studio.js), et le texte de la section est posé DEDANS, en
+               blanc. Pas de [data-reveal] ici : le texte est gravé dans la
+               barre, il sort avec elle (un glissement vertical le ferait
+               dépasser de la barre). Au bout de chaque barre, sur le blanc :
+               l'asset « keep it simple. » (public/assets/keep it simple.png,
+               lettres foncées sur fond transparent, donc invisible sur du noir). -->
+          <div class="studio-zone">
+            <div class="studio-screen">
+              <div class="studio-bars">
+                <div class="studio-row studio-row--third">
+                  <div class="studio-block">
+                    <div class="studio-bar">
+                      <p class="studio-kicker">Le studio</p>
+                      <h2 class="studio-title">Peu de projets, beaucoup d'attention.</h2>
+                    </div>
+                    <span class="studio-plaque">
+                      <img src="/assets/keep%20it%20simple.png" alt="keep it simple." />
+                    </span>
+                  </div>
                 </div>
-                <p class="project-text">
-                  Deuxième paragraphe de démonstration. Même chose : aucune information,
-                  uniquement de la matière pour vérifier l'alignement, les marges et le
-                  comportement du texte sous la photo.
-                </p>
+
+                <div class="studio-row studio-row--two-thirds">
+                  <div class="studio-block">
+                    <div class="studio-bar">
+                      <p class="studio-paragraph">
+                        bLaNk est un studio indépendant installé à Paris. Design
+                        et développement se font au même endroit, par la même
+                        équipe : pas de relais, pas de réunion qui raconte ce qui
+                        vient d'être dit. On reste petits, exprès.
+                      </p>
+                    </div>
+                    <span class="studio-plaque" aria-hidden="true">
+                      <img src="/assets/keep%20it%20simple.png" alt="" />
+                    </span>
+                  </div>
+                </div>
+
+                <div class="studio-row studio-row--full">
+                  <div class="studio-block">
+                    <div class="studio-bar">
+                      <p class="studio-paragraph">
+                        Chaque projet commence par une page blanche et une
+                        question : que reste-t-il quand on enlève tout le reste ?
+                        On écrit avant de dessiner, puis on monte un système que
+                        vous pouvez faire vivre sans nous. Rien de plus.
+                      </p>
+                    </div>
+                    <span class="studio-plaque" aria-hidden="true">
+                      <img src="/assets/keep%20it%20simple.png" alt="" />
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-inner">
-              <figure class="project-photo">
-                <img
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
-                  alt="" aria-hidden="true" />
-              </figure>
-              <div class="project-meta">
-                <div class="project-meta-head">
-                  <span class="project-index">03</span>
-                  <h3 class="project-name">Projet Gamma</h3>
-                  <p class="project-tag">Édition · 2025</p>
-                </div>
-                <p class="project-text">
-                  Troisième et dernier paragraphe de démonstration. Rien à lire ici non plus.
-                  Quand tu m'enverras les photos, je remplacerai les fichiers et j'écrirai les
-                  vrais textes à leur place.
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <!-- Réserve de scroll. Sans elle, la dernière carte n'a aucune course
-               de sticky et les trois se décollent dès que la pile est complète.
-               Avec elle, la pile reste figée un moment avant de repartir. -->
-          <div class="projects-stack-tail" aria-hidden="true"></div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </div>
 
       <!-- ============ CONTACT ============ -->
       <section id="contact" data-section>

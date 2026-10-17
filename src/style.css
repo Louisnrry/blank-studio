@@ -320,10 +320,10 @@ section[data-section] {
   --card-h: 72svh;
 }
 
-/* Logo de la section : collé en haut à gauche de l'écran pendant toute la
-   traversée, au-dessus des cartes. Hauteur nulle et largeur calquée sur
-   .container-x : il est aligné sur la marge gauche de la page et ne pousse
-   pas la pile de cartes. */
+/* Logo collé en haut à gauche de l'écran pendant toute la traversée des
+   sections projets, offres et à propos (elles partagent le même bloc
+   .logo-zone). Hauteur nulle et largeur calquée sur .container-x : il est
+   aligné sur la marge gauche de la page et ne pousse rien. */
 .projects-logo {
   position: sticky;
   top: 2rem;
@@ -446,6 +446,306 @@ section[data-section] {
   }
   .project-tag {
     margin-left: 0;
+  }
+}
+
+/* ---------- Offres (section figée) ----------
+   L'écran reste collé pendant toute la traversée de la zone : les trois offres
+   se remplacent au fil du scroll (src/js/offres.js) et les trois traits de
+   gauche se remplissent un segment à la fois. Comme pour la pile de projets,
+   aucun ancêtre ne doit porter overflow:hidden, sinon le sticky lâche. */
+#offres {
+  background: #ffffff;
+}
+.offres-zone {
+  /* Un écran (le temps collé) + la traversée des trois offres. */
+  --offres-travel: 240svh;
+  height: calc(100svh + var(--offres-travel));
+}
+.offres-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+}
+
+/* Le rail : trois traits à gauche de l'écran, centrés verticalement.
+   Il est positionné par rapport à l'écran collé (position: sticky = positionné
+   sur lui-même), donc il suit la section. */
+.offres-rail {
+  position: absolute;
+  left: clamp(1rem, 2.4vw, 2rem);
+  top: 50%;
+  translate: 0 -50%;
+  display: flex;
+  flex-direction: column; /* les trois traits s'empilent à la verticale */
+  gap: 0.4rem;
+}
+.offres-tick {
+  display: block;
+  width: 2px;
+  height: clamp(22px, 2.4vw, 30px);
+  background: var(--line);
+  overflow: hidden;
+}
+/* La barre se remplit du haut vers le bas : chaque segment descend pendant son
+   tiers de la traversée. */
+.offres-tick i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--ink);
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+}
+
+.offres-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(32vw, 400px);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+  /* Bande réservée aux traits, à gauche de l'écran. */
+  padding-left: clamp(3rem, 6vw, 5.5rem);
+}
+
+/* Textes : les trois blocs occupent la même cellule de grille — la colonne
+   prend donc la hauteur du plus long, et ils se remplacent en fondu. */
+.offres-text {
+  display: grid;
+}
+.offre {
+  grid-area: 1 / 1;
+  align-self: center;
+  opacity: 0;
+  pointer-events: none;
+}
+.offre.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.offre-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  font-size: clamp(1.9rem, 2.8vw, 2.7rem);
+  margin: 0 0 1rem;
+}
+.offre-text {
+  margin: 0;
+  max-width: 36ch;
+  color: var(--ink-dim);
+  font-size: clamp(0.92rem, 1.15vw, 1.02rem);
+  line-height: 1.75;
+}
+
+/* La card, à droite : un panneau gris clair, plus petit que les cartes
+   projets, avec un visuel dedans. Même principe de superposition. */
+.offres-card {
+  display: grid;
+  width: 100%;
+  justify-self: end;
+}
+.offre-visual {
+  grid-area: 1 / 1;
+  margin: 0;
+  background: #f2f2f2;
+  border-radius: clamp(16px, 1.8vw, 24px);
+  padding: clamp(0.6rem, 1.1vw, 1rem);
+  opacity: 0;
+  pointer-events: none;
+}
+.offre-visual.is-active {
+  opacity: 1;
+}
+.offre-visual img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: clamp(10px, 1.3vw, 16px);
+  background: #dcdcdc;
+}
+
+@media (max-width: 760px) {
+  .offres-zone {
+    --offres-travel: 200svh;
+  }
+  .offres-grid {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+    gap: clamp(1.25rem, 4vw, 2rem);
+    padding-left: 2.75rem;
+  }
+  .offres-rail {
+    left: 0.9rem;
+  }
+  .offres-tick {
+    height: 18px;
+  }
+  .offre-name {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+  }
+  .offre-text {
+    font-size: 0.92rem;
+  }
+  .offres-card {
+    width: min(66vw, 300px);
+    justify-self: start;
+  }
+}
+
+/* ---------- À propos détaillé (section figée) ----------
+   L'écran reste collé pendant toute la traversée de .studio-zone : les trois
+   barres noires sortent du bord gauche l'une après l'autre, une par tiers du
+   scroll (src/js/studio.js), et le texte de la section est posé DEDANS, en
+   blanc. Chaque barre se termine par l'asset « keep it simple. », sur le blanc.
+   Comme pour les offres : aucun ancêtre ne doit porter overflow:hidden. */
+#studio {
+  background: #ffffff;
+}
+.studio-zone {
+  /* Un écran (le temps collé) + la sortie des trois barres. */
+  --studio-travel: 210svh;
+  --bar-h: clamp(130px, 19.5svh, 240px);
+  --bar-gap: clamp(10px, 1.8svh, 18px);
+  --bar-radius: clamp(10px, 1.3vw, 20px);
+  --bar-pad: clamp(0.85rem, 1.15vw, 1.35rem);
+  /* L'asset garde son rapport (448 × 243) : on règle la hauteur, la largeur
+     suit. */
+  --plaque-h: clamp(56px, 11svh, 120px);
+  --plaque-w: calc(var(--plaque-h) * 1.8436);
+  /* Réserve de droite, alignée sur la marge de .container-x (1,5rem). */
+  --studio-edge: 1.5rem;
+  height: calc(100svh + var(--studio-travel));
+}
+.studio-screen {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  /* Les barres attendent hors du bord gauche. clip ne crée pas de conteneur de
+     scroll : le sticky de l'écran lui-même reste intact. */
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+  /* Les barres sont posées en bas de l'écran, le haut reste au logo. */
+  justify-content: flex-end;
+  padding-bottom: clamp(2rem, 6svh, 4.5rem);
+}
+
+/* --- Le texte, en blanc, vit DANS les barres --- */
+.studio-kicker {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 244, 241, 0.62);
+}
+.studio-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  font-size: clamp(1.35rem, 2.85vw, 2rem);
+  text-wrap: balance;
+  color: #f4f4f1;
+  margin: 0;
+}
+.studio-paragraph {
+  margin: 0;
+  /* Le texte occupe presque toute la barre : mesure ~450 px (~62 caractères
+     par ligne), mots légèrement espacés pour que chaque ligne touche le bord
+     droit, quatre lignes qui remplissent la hauteur. */
+  max-width: 42ch;
+  word-spacing: 0.07em;
+  color: rgba(244, 244, 241, 0.78);
+  font-size: clamp(0.98rem, 1.3vw, 1.15rem);
+  line-height: 1.55;
+}
+
+/* --- Les trois barres, en escalier contre le bord gauche --- */
+.studio-bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bar-gap);
+  padding-right: var(--studio-edge);
+}
+.studio-row {
+  display: flex;
+}
+/* Le bloc est exactement ce qui sort du mur : la barre + l'écart + la plaque.
+   translateX(-100%) = toute la course, d'où les largeurs calculées (la barre
+   garde ainsi son tiers ou ses deux tiers exacts, plaque non comprise).
+   Marge gauche de -1 px : la barre est collée à la bordure, sans liseré. */
+.studio-block {
+  display: flex;
+  align-items: center;
+  gap: var(--bar-gap);
+  margin-left: -1px;
+  transform: translateX(-100%);
+  will-change: transform;
+}
+.studio-row--third .studio-block {
+  width: calc(33.3333% + var(--bar-gap) + var(--plaque-w));
+}
+.studio-row--two-thirds .studio-block {
+  width: calc(66.6667% + var(--bar-gap) + var(--plaque-w));
+}
+.studio-row--full .studio-block {
+  width: 100%;
+}
+/* Bord gauche carré (la barre est encastrée dans le mur) et extrémité droite
+   arrondie. min-width: 0 : la barre accepte de se réduire à la largeur prévue
+   même quand son texte est long. */
+.studio-bar {
+  flex: 1;
+  min-width: 0;
+  height: var(--bar-h);
+  padding: var(--bar-pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(0.5rem, 1vw, 0.9rem);
+  border-radius: 0 var(--bar-radius) var(--bar-radius) 0;
+  background: var(--ink);
+  color: #f4f4f1;
+  overflow: hidden;
+}
+/* La plaque du bout : l'asset tel quel (lettres foncées, fond transparent),
+   donc posé directement sur le blanc. */
+.studio-plaque {
+  flex: none;
+  display: block;
+  width: var(--plaque-w);
+}
+.studio-plaque img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 760px) {
+  .studio-zone {
+    --studio-travel: 180svh;
+    --bar-h: clamp(148px, 23svh, 170px);
+    --bar-gap: 8px;
+    --bar-radius: 10px;
+    --bar-pad: 0.85rem;
+    --plaque-h: clamp(38px, 6.6svh, 62px);
+  }
+  .studio-kicker {
+    font-size: 0.7rem;
+  }
+  .studio-title {
+    font-size: clamp(0.95rem, 4.4vw, 1.25rem);
+  }
+  .studio-paragraph {
+    font-size: 0.72rem;
+    line-height: 1.45;
   }
 }
 
