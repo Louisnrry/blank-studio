@@ -1,7 +1,7 @@
 # blank® — one-pager agence (Vite + Three.js + GSAP)
 
 Agence digitale fictive : branding & création de sites.
-One-pager : hero (shader encre) → manifeste → offre → projets → contact + formulaire → footer.
+One-pager : landing → traversée d'encre → about → projets → contact + formulaire → footer.
 
 ## Stack
 
@@ -37,7 +37,7 @@ Chaque push sur `main` redéploie automatiquement.
 ## Structure
 
 ```
-index.html            # landing, encre, about, offre, projets, contact, footer
+index.html            # landing, encre, about, projets, contact, footer
 public/favicon.svg    # favicon placeholder (□)
 public/assets/        # fleur.png + logo.png (landing, noir & blanc)
 src/main.js           # orchestration

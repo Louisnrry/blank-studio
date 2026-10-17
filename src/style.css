@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  /* Cormorant Garamond pour les titres, Cabin pour les textes.
+     Cormorant a une hauteur de capitale basse : on compense par le poids 700
+     et un interlettrage quasi nul sur les gros titres. */
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body: "Cabin", system-ui, -apple-system, sans-serif;
 }
 
 /* ---------- Thème unique : clair (noir & blanc) ---------- */
@@ -77,7 +80,7 @@ section[data-section] {
   gap: 0.5rem;
   padding: 0.95rem 1.7rem;
   border-radius: 999px;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 0.95rem;
   text-decoration: none;
   border: 1px solid transparent;
@@ -162,21 +165,11 @@ section[data-section] {
   gap: 1.25rem;
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
-.section-index {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  border-radius: 999px;
-  padding: 0.3rem 0.7rem;
-}
 .section-title {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.9rem, 4.4vw, 3rem);
   margin: 0;
 }
 .section-line {
@@ -242,7 +235,7 @@ section[data-section] {
 /* ---------- About (sur nuages) ---------- */
 .about-kicker {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(244, 244, 242, 0.6);
@@ -257,8 +250,8 @@ section[data-section] {
    visuellement. Sur l'encre blanche, c'est lui qui garantit la lecture. */
 .about-title {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   line-height: 1.1;
   font-size: clamp(2rem, 5vw, 3.4rem);
   max-width: 16em;
@@ -286,7 +279,7 @@ section[data-section] {
   padding: 1rem 2.2rem;
   background: #f4f4f1;
   color: #060607;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 0.95rem;
   text-decoration: none;
   border-radius: 0;
@@ -299,160 +292,133 @@ section[data-section] {
   box-shadow: inset 0 0 0 1px #f4f4f1;
 }
 
-/* ---------- Offre ---------- */
-#offre {
-  background: var(--bg-soft);
-  border-block: 1px solid var(--line);
-}
-.offer-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-@media (max-width: 760px) {
-  .offer-grid {
-    grid-template-columns: 1fr;
-  }
-}
-.offer-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: clamp(1.5rem, 3.5vw, 2.25rem);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s;
-}
-.offer-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--ink-faint);
-}
-.offer-num {
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ink-faint);
-  letter-spacing: 0.1em;
-}
-.offer-card h3 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
-  margin: 0.9rem 0 0.7rem;
-}
-.offer-card p {
-  color: var(--ink-dim);
-  line-height: 1.65;
-  margin: 0 0 1.25rem;
-  font-size: 0.97rem;
-}
-.offer-card ul {
-  list-style: none;
-  margin: 0;
-  padding: 1.1rem 0 0;
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.offer-card li {
-  font-size: 0.8rem;
-  font-weight: 500;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.35rem 0.8rem;
-  color: var(--ink-dim);
+/* ---------- Projets : pile de cartes ----------
+   Toutes les cartes sont en position: sticky, calées en haut de l'écran et
+   SANS décalage : chacune recouvre donc entièrement la précédente. À
+   l'arrivée, la carte est agrandie puis reprend sa taille exactement au
+   moment où elle se cale — c'est l'effet de la référence. L'échelle est
+   calculée à chaque frame par src/js/projects-stack.js.
+
+   Pièges : ne jamais mettre overflow:hidden sur un ANCÊTRE de .project-card
+   (ça crée un conteneur de scroll et le sticky cesse de fonctionner). Ici
+   l'overflow est sur la carte elle-même, ce qui ne gêne pas son propre
+   sticky. Le body du site utilise overflow-x: clip, qui ne casse rien. */
+#projets {
+  background: #ffffff;
 }
 
-/* ---------- Projets ---------- */
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(1rem, 3vw, 2rem);
-}
-@media (max-width: 760px) {
-  .work-grid {
-    grid-template-columns: 1fr;
-  }
-}
-.work-card {
-  text-decoration: none;
-  color: inherit;
-}
-.work-visual {
+.projects-stack {
   position: relative;
-  aspect-ratio: 4 / 3;
-  border-radius: 18px;
+  /* Agrandissement à l'arrivée. La carte fait 64vw de large : ×1,55 elle
+     arrive quasiment plein cadre (99vw) sans jamais être rognée, puis se
+     réduit jusqu'à se superposer EXACTEMENT à la carte précédente. */
+  --card-zoom: 1.55;
+  --card-w: min(64vw, 1040px);
+  --card-h: 72svh;
+}
+
+/* Réserve de scroll. Une carte en position sticky ne peut descendre que
+   jusqu'au bas de son conteneur : cette hauteur est donc le temps pendant
+   lequel la pile complète reste figée avant de repartir d'un bloc. */
+.projects-stack-tail {
+  height: 45svh;
+}
+
+/* C'est la carte entière qui est mise à l'échelle (panneau + contenu), pas
+   seulement son contenu : les coins arrondis grandissent avec elle, comme
+   sur la référence. Une transformation ne modifie pas la boîte de layout,
+   donc le sticky et les mesures restent justes. */
+.project-card {
+  position: sticky;
+  top: 0;
+  width: var(--card-w);
+  height: var(--card-h);
+  /* L'écart entre deux cartes est aussi le temps de lecture : la carte
+     suivante arrive par le bas, agrandie, et son boîtier déborde vers le haut
+     d'environ (--card-zoom - 1) / 2 × hauteur. Avec 36svh d'écart, une carte
+     fraîchement calée garde son texte entièrement visible un moment avant
+     d'être recouverte. */
+  margin: 0 auto 36svh;
+  border-radius: clamp(18px, 2.4vw, 32px);
+  background: #f2f2f2;
   overflow: hidden;
-  border: 1px solid var(--line);
+  transform-origin: 50% 50%;
+  will-change: transform;
 }
-.work-visual img {
-  position: absolute;
-  inset: -12%;
-  width: 124%;
-  height: 124%;
+
+.project-inner {
+  height: 100%;
+  padding: clamp(0.9rem, 1.8vw, 1.6rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.9rem, 1.8vw, 1.5rem);
+}
+
+/* --- Photo --- */
+.project-photo {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: clamp(12px, 1.6vw, 22px);
+  background: #dcdcdc;
+}
+.project-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  opacity: 0;
 }
-.work-visual::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+
+/* --- Texte, sous la photo --- */
+.project-meta {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
 }
-.work-card:hover .work-visual::before {
-  transform: scale(1.05);
-}
-.work-visual--a::before {
-  background:
-    radial-gradient(120% 90% at 15% 10%, #d8ff3e 0%, transparent 55%),
-    linear-gradient(135deg, #1b1b1e 0%, #3a3d33 100%);
-}
-.work-visual--b::before {
-  background:
-    radial-gradient(100% 100% at 85% 20%, #7d8bff 0%, transparent 55%),
-    linear-gradient(135deg, #101014 0%, #23232e 100%);
-}
-.work-visual--c::before {
-  background:
-    radial-gradient(110% 90% at 50% 100%, #ff8a5c 0%, transparent 55%),
-    linear-gradient(135deg, #17130f 0%, #3a2a1e 100%);
-}
-.work-visual--d::before {
-  background:
-    radial-gradient(100% 100% at 20% 85%, #5ce1ff 0%, transparent 55%),
-    linear-gradient(135deg, #0d1417 0%, #1e3238 100%);
-}
-.work-index {
-  position: absolute;
-  left: 1.25rem;
-  bottom: 1rem;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  letter-spacing: -0.04em;
-  color: rgba(255, 255, 255, 0.9);
-  mix-blend-mode: overlay;
-  line-height: 1;
-}
-.work-info {
+.project-meta-head {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.1rem 0.25rem 0;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 1.4vw, 0.9rem);
 }
-.work-info h3 {
+.project-index {
+  flex: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+}
+.project-name {
+  margin: 0;
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.25rem;
-  letter-spacing: -0.02em;
-  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 2.1vw, 1.6rem);
+  letter-spacing: 0;
+  line-height: 1;
 }
-.work-info p {
+.project-tag {
+  margin: 0 0 0 auto;
+  font-size: clamp(0.75rem, 1.2vw, 0.88rem);
   color: var(--ink-dim);
-  font-size: 0.9rem;
+}
+.project-text {
   margin: 0;
-  white-space: nowrap;
+  max-width: 68ch;
+  color: var(--ink-dim);
+  font-size: clamp(0.85rem, 1.3vw, 0.95rem);
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .projects-stack {
+    --card-zoom: 1.12;
+    --card-w: 88vw;
+    --card-h: 74svh;
+  }
+  .project-tag {
+    margin-left: 0;
+  }
 }
 
 /* ---------- Contact ---------- */
@@ -473,8 +439,8 @@ section[data-section] {
 }
 .contact-title {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   line-height: 1.1;
   font-size: clamp(2rem, 5vw, 3.4rem);
   margin: 0 0 2.5rem;
@@ -527,7 +493,7 @@ section[data-section] {
 }
 .field label {
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--ink-dim);
@@ -580,8 +546,8 @@ section[data-section] {
 }
 .footer-cta {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   font-size: clamp(1.8rem, 5vw, 3.2rem);
   color: var(--ink);
   text-decoration: none;
@@ -593,7 +559,7 @@ section[data-section] {
 .footer-word {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.01em;
   line-height: 0.85;
   font-size: clamp(4rem, 18vw, 15rem);
   color: transparent;

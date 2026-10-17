@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cabin:wght@400&family=Cormorant+Garamond:wght@700&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -84,100 +84,87 @@
         </div>
       </section>
 
-      <!-- ============ OFFRE ============ -->
-      <section id="offre" data-section>
-        <div class="container-x">
-          <div class="section-head" data-reveal>
-            <span class="section-index">01</span>
-            <h2 class="section-title">Notre offre</h2>
-            <span class="section-line" aria-hidden="true"></span>
-          </div>
-          <p class="section-sub" data-reveal>
-            Quatre expertises, une seule exigence : l'essentiel, sans compromis.
-          </p>
-          <div class="offer-grid" data-reveal-group>
-            <article class="offer-card">
-              <span class="offer-num">01</span>
-              <h3>Identité de marque</h3>
-              <p>Logo, système visuel, ton de voix, guidelines. Des marques qui se reconnaissent entre mille.</p>
-              <ul><li>Direction artistique</li><li>Logotype &amp; système</li><li>Guidelines</li></ul>
-            </article>
-            <article class="offer-card">
-              <span class="offer-num">02</span>
-              <h3>Design &amp; développement web</h3>
-              <p>Sites vitrines, e-commerce, design systems. Rapides, accessibles, pensés pour convertir.</p>
-              <ul><li>UI / UX design</li><li>Développement sur-mesure</li><li>E-commerce</li></ul>
-            </article>
-            <article class="offer-card">
-              <span class="offer-num">03</span>
-              <h3>Motion &amp; 3D</h3>
-              <p>WebGL, shaders, micro-interactions. Le mouvement comme langage, jamais comme décoration.</p>
-              <ul><li>WebGL / shaders</li><li>Micro-interactions</li><li>Showreels</li></ul>
-            </article>
-            <article class="offer-card">
-              <span class="offer-num">04</span>
-              <h3>Contenu &amp; référencement</h3>
-              <p>Copywriting, SEO technique, performance. Être vu, être compris, être choisi.</p>
-              <ul><li>Copywriting</li><li>SEO technique</li><li>Analytics</li></ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <!-- ============ PROJETS ============ -->
       <section id="projets" data-section>
-        <div class="container-x">
-          <div class="section-head" data-reveal>
-            <span class="section-index">02</span>
-            <h2 class="section-title">Projets sélectionnés</h2>
-            <span class="section-line" aria-hidden="true"></span>
-          </div>
-          <p class="section-sub" data-reveal>
-            Une sélection de collaborations récentes. Visuels de démonstration —
-            remplace-les par tes assets (voir <code>docs/depth-map.md</code> pour l'effet depth-map).
-          </p>
-          <div class="work-grid" data-reveal-group>
-            <article class="work-card">
-              <div class="work-visual work-visual--a" data-parallax-wrap>
-                <img data-parallax src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E" alt="" aria-hidden="true" />
-                <span class="work-index">01</span>
+        <!-- Pile de projets. Toutes les cartes sont en position: sticky et
+             calées en haut de l'écran, sans décalage : chacune recouvre donc
+             ENTIÈREMENT la précédente. La carte entrante arrive agrandie et
+             reprend sa taille exactement au moment où elle se cale — c'est
+             l'effet de la référence (facteur --card-zoom, piloté par
+             src/js/projects-stack.js). Le texte vit sous la photo, dans la
+             carte : il reste lisible pendant tout le règne de la carte. -->
+        <div class="projects-stack">
+          <article class="project-card">
+            <div class="project-inner">
+              <figure class="project-photo">
+                <!-- Remplacer le src par la vraie photo du projet. -->
+                <img
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
+                  alt="" aria-hidden="true" />
+              </figure>
+              <div class="project-meta">
+                <div class="project-meta-head">
+                  <span class="project-index">01</span>
+                  <h3 class="project-name">Projet Alpha</h3>
+                  <p class="project-tag">Identité visuelle · 2026</p>
+                </div>
+                <p class="project-text">
+                  Texte de démonstration. Ce paragraphe ne raconte rien et ne sert qu'à
+                  occuper la place prévue en attendant le vrai contenu. Il est volontairement
+                  neutre, sans intérêt, pour qu'on juge la mise en page et pas les mots.
+                </p>
               </div>
-              <div class="work-info">
-                <h3>Maison Ora</h3>
-                <p>E-commerce &amp; identité — 2026</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-inner">
+              <figure class="project-photo">
+                <img
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
+                  alt="" aria-hidden="true" />
+              </figure>
+              <div class="project-meta">
+                <div class="project-meta-head">
+                  <span class="project-index">02</span>
+                  <h3 class="project-name">Projet Beta</h3>
+                  <p class="project-tag">Site vitrine · 2025</p>
+                </div>
+                <p class="project-text">
+                  Deuxième paragraphe de démonstration. Même chose : aucune information,
+                  uniquement de la matière pour vérifier l'alignement, les marges et le
+                  comportement du texte sous la photo.
+                </p>
               </div>
-            </article>
-            <article class="work-card">
-              <div class="work-visual work-visual--b" data-parallax-wrap>
-                <img data-parallax src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E" alt="" aria-hidden="true" />
-                <span class="work-index">02</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-inner">
+              <figure class="project-photo">
+                <img
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='100'%3E%3Crect width='160' height='100' fill='%23dcdcdc'/%3E%3C/svg%3E"
+                  alt="" aria-hidden="true" />
+              </figure>
+              <div class="project-meta">
+                <div class="project-meta-head">
+                  <span class="project-index">03</span>
+                  <h3 class="project-name">Projet Gamma</h3>
+                  <p class="project-tag">Édition · 2025</p>
+                </div>
+                <p class="project-text">
+                  Troisième et dernier paragraphe de démonstration. Rien à lire ici non plus.
+                  Quand tu m'enverras les photos, je remplacerai les fichiers et j'écrirai les
+                  vrais textes à leur place.
+                </p>
               </div>
-              <div class="work-info">
-                <h3>Studio Nord</h3>
-                <p>Site vitrine &amp; 3D — 2025</p>
-              </div>
-            </article>
-            <article class="work-card">
-              <div class="work-visual work-visual--c" data-parallax-wrap>
-                <img data-parallax src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E" alt="" aria-hidden="true" />
-                <span class="work-index">03</span>
-              </div>
-              <div class="work-info">
-                <h3>Papier Blanc</h3>
-                <p>Éditorial &amp; branding — 2025</p>
-              </div>
-            </article>
-            <article class="work-card">
-              <div class="work-visual work-visual--d" data-parallax-wrap>
-                <img data-parallax src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3C/svg%3E" alt="" aria-hidden="true" />
-                <span class="work-index">04</span>
-              </div>
-              <div class="work-info">
-                <h3>Kiosque</h3>
-                <p>Produit &amp; design system — 2024</p>
-              </div>
-            </article>
-          </div>
+            </div>
+          </article>
+
+          <!-- Réserve de scroll. Sans elle, la dernière carte n'a aucune course
+               de sticky et les trois se décollent dès que la pile est complète.
+               Avec elle, la pile reste figée un moment avant de repartir. -->
+          <div class="projects-stack-tail" aria-hidden="true"></div>
         </div>
       </section>
 
@@ -185,7 +172,6 @@
       <section id="contact" data-section>
         <div class="container-x">
           <div class="section-head" data-reveal>
-            <span class="section-index">03</span>
             <h2 class="section-title">Contact</h2>
             <span class="section-line" aria-hidden="true"></span>
           </div>
@@ -195,7 +181,7 @@
               <ul>
                 <li><span>Email</span><a href="mailto:hello@blank.studio">hello@blank.studio</a></li>
                 <li><span>Téléphone</span><a href="tel:+33184000000">+33 1 84 00 00 00</a></li>
-                <li><span>Studio</span>Paris 11<sup>e</sup>, France</li>
+                <li><span>Studio</span><span>Paris 11<sup>e</sup>, France</span></li>
                 <li><span>Réseaux</span><span class="socials"><a href="#" rel="noopener">Instagram</a> · <a href="#" rel="noopener">Behance</a> · <a href="#" rel="noopener">LinkedIn</a></span></li>
               </ul>
             </div>
@@ -242,7 +228,6 @@
           <span>© <span id="year">2026</span> bLaNk — agence fictive de démonstration</span>
           <nav aria-label="Navigation pied de page">
             <a href="#about" data-scroll-to="#about">About</a>
-            <a href="#offre" data-scroll-to="#offre">Offre</a>
             <a href="#projets" data-scroll-to="#projets">Projets</a>
             <a href="#contact" data-scroll-to="#contact">Contact</a>
           </nav>
