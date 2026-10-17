@@ -1,10 +1,14 @@
 // Pile de projets (#projets).
 //
-// Chaque carte est en position: sticky, calée en haut de l'écran et sans
-// décalage : elle recouvre donc entièrement la précédente. La carte entrante
-// arrive agrandie (--card-zoom) et reprend sa taille normale exactement au
-// moment où elle se cale en haut — décroissance linéaire dans le scroll, comme
-// sur la référence.
+// Chaque carte est en position: sticky, centrée verticalement dans l'écran et
+// avec le même décalage que les autres : elle recouvre donc entièrement la
+// précédente. La carte entrante arrive agrandie (--card-zoom) et reprend sa
+// taille normale exactement au moment où elle se cale — décroissance linéaire
+// dans le scroll, comme sur la référence.
+//
+// Le décalage du sticky est lu dans le CSS (top: calc((100svh - hauteur) / 2))
+// et retiré aux bornes : sans ça, la carte se calerait plus tard que prévu et
+// l'échelle n'atteindrait pas 1 à l'instant du calage.
 //
 // Pourquoi pas ScrollTrigger : les cartes sont sticky, donc leur position
 // MESURÉE est décalée par le sticky lui-même et les bornes calculées seraient
@@ -27,13 +31,15 @@ export function initProjectsStack() {
 
   let viewportH = 0;
   let zoom = 1;
-  let pins = []; // scroll absolu auquel chaque carte se cale en haut
+  let stickyTop = 0; // décalage du sticky, lu dans le CSS (cartes centrées)
+  let pins = []; // scroll absolu auquel chaque carte se cale en place
   let last = []; // dernière échelle écrite, pour ne rien toucher quand c'est stable
   let running = !reduced.matches;
 
   const measure = () => {
     viewportH = window.innerHeight;
     zoom = parseFloat(getComputedStyle(stack).getPropertyValue('--card-zoom')) || 1;
+    stickyTop = parseFloat(getComputedStyle(cards[0]).top) || 0;
     const stackTop = stack.getBoundingClientRect().top + window.scrollY;
     // Position STATIQUE de chaque carte, reconstruite à partir des hauteurs de
     // layout et des marges. Surtout pas card.offsetTop : il inclut le décalage
@@ -42,7 +48,7 @@ export function initProjectsStack() {
     // par le sticky ni par une transformation.
     let acc = 0;
     pins = cards.map((card) => {
-      const pin = stackTop + acc;
+      const pin = stackTop + acc - stickyTop;
       acc += card.offsetHeight + (parseFloat(getComputedStyle(card).marginBottom) || 0);
       return pin;
     });

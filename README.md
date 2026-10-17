@@ -62,8 +62,8 @@ docs/depth-map.md     # guide effet depth-map (préparé, non implémenté)
 - **Shader** : réglages dans `src/shaders/ink.frag` (vitesse `uTime * 0.05`,
   halo souris `exp(-d * 3.0)`, grain, vignette).
 - **Thème** : variables dans `src/style.css` (`html[data-theme="light"]`).
-- **Visuels projets** : remplace les placeholders `.work-visual--*` par des `<img>`
-  réelles — la parallaxe `[data-parallax]` est déjà câblée.
+- **Visuels projets** : chaque carte a un placeholder inline (`data:image/svg+xml` sur
+  `.project-photo img` dans `index.html`) — remplace simplement le `src` par la vraie photo.
 - **Formulaire** : `src/js/contact.js` simule l'envoi (900 ms) ; branche ton
   backend / Formspree / API à l'endroit indiqué.
 - **Depth-map** : voir `docs/depth-map.md` (guide complet, en attente de ton go).

@@ -86,10 +86,16 @@
 
       <!-- ============ PROJETS ============ -->
       <section id="projets" data-section>
-        <!-- Pile de projets. Toutes les cartes sont en position: sticky et
-             calées en haut de l'écran, sans décalage : chacune recouvre donc
-             ENTIÈREMENT la précédente. La carte entrante arrive agrandie et
-             reprend sa taille exactement au moment où elle se cale — c'est
+        <!-- Logo collé en haut à gauche de l'écran pendant toute la traversée
+             de la section (voir .projects-logo). -->
+        <div class="projects-logo">
+          <img src="/assets/logo.png" alt="bLaNk" />
+        </div>
+
+        <!-- Pile de projets. Toutes les cartes sont en position: sticky,
+             centrées verticalement avec le MÊME décalage : chacune recouvre
+             donc ENTIÈREMENT la précédente. La carte entrante arrive agrandie
+             et reprend sa taille exactement au moment où elle se cale — c'est
              l'effet de la référence (facteur --card-zoom, piloté par
              src/js/projects-stack.js). Le texte vit sous la photo, dans la
              carte : il reste lisible pendant tout le règne de la carte. -->

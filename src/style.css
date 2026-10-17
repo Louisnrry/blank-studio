@@ -293,11 +293,12 @@ section[data-section] {
 }
 
 /* ---------- Projets : pile de cartes ----------
-   Toutes les cartes sont en position: sticky, calées en haut de l'écran et
-   SANS décalage : chacune recouvre donc entièrement la précédente. À
+   Toutes les cartes sont en position: sticky, centrées verticalement et avec
+   le MÊME décalage : chacune recouvre donc entièrement la précédente. À
    l'arrivée, la carte est agrandie puis reprend sa taille exactement au
    moment où elle se cale — c'est l'effet de la référence. L'échelle est
-   calculée à chaque frame par src/js/projects-stack.js.
+   calculée à chaque frame par src/js/projects-stack.js (qui lit ce décalage
+   pour savoir quand la carte se cale).
 
    Pièges : ne jamais mettre overflow:hidden sur un ANCÊTRE de .project-card
    (ça crée un conteneur de scroll et le sticky cesse de fonctionner). Ici
@@ -310,11 +311,35 @@ section[data-section] {
 .projects-stack {
   position: relative;
   /* Agrandissement à l'arrivée. La carte fait 64vw de large : ×1,55 elle
-     arrive quasiment plein cadre (99vw) sans jamais être rognée, puis se
-     réduit jusqu'à se superposer EXACTEMENT à la carte précédente. */
+     arrive quasiment plein cadre (99vw) sans jamais être rognée en largeur,
+     puis se réduit jusqu'à se superposer EXACTEMENT à la carte précédente.
+     En hauteur, la carte agrandie dépasse un peu l'écran (5,8svh en haut et
+     en bas) : elle est centrée, donc le débordement est symétrique. */
   --card-zoom: 1.55;
   --card-w: min(64vw, 1040px);
   --card-h: 72svh;
+}
+
+/* Logo de la section : collé en haut à gauche de l'écran pendant toute la
+   traversée, au-dessus des cartes. Hauteur nulle et largeur calquée sur
+   .container-x : il est aligné sur la marge gauche de la page et ne pousse
+   pas la pile de cartes. */
+.projects-logo {
+  position: sticky;
+  top: 2rem;
+  z-index: 5;
+  height: 0;
+  width: min(1200px, 100% - 3rem);
+  margin-inline: auto;
+}
+.projects-logo img {
+  display: block;
+  width: clamp(84px, 10vw, 120px);
+  height: auto;
+  /* Même traitement que le logo de la landing : le PNG est clair, on
+     l'inverse pour l'avoir noir sur le fond blanc. */
+  filter: invert(1);
+  mix-blend-mode: multiply;
 }
 
 /* Réserve de scroll. Une carte en position sticky ne peut descendre que
@@ -330,7 +355,10 @@ section[data-section] {
    donc le sticky et les mesures restent justes. */
 .project-card {
   position: sticky;
-  top: 0;
+  /* Centrée verticalement : décalage = (hauteur d'écran - hauteur de carte) / 2.
+     Toutes les cartes partagent ce décalage, donc la carte suivante recouvre
+     toujours entièrement la précédente. */
+  top: calc((100svh - var(--card-h)) / 2);
   width: var(--card-w);
   height: var(--card-h);
   /* L'écart entre deux cartes est aussi le temps de lecture : la carte
