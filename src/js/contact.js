@@ -7,11 +7,11 @@ export function initContact() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!form.checkValidity()) {
-      setStatus('Merci de remplir tous les champs (email valide requis).', 'err');
+      setStatus('Merci de remplir prénom, nom et email (email valide requis).', 'err');
       form.reportValidity();
       return;
     }
-    const btn = form.querySelector('[type="submit"] .btn-label');
+    const btn = form.querySelector('.contact-submit-label');
     const original = btn ? btn.textContent : '';
     if (btn) btn.textContent = 'Envoi…';
     setStatus('', '');

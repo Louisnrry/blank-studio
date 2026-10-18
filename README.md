@@ -39,7 +39,7 @@ Chaque push sur `main` redéploie automatiquement.
 ```
 index.html            # landing, encre, about, projets, offres, à propos, contact, footer
 public/favicon.svg    # favicon placeholder (□)
-public/assets/        # fleur.png + logo.png (landing) + keep it simple.png (plaque des barres)
+public/assets/        # fleur.png + logo.png (landing), keep it simple.png (barres), ensemble_flower.png + triangle dropdown 2.png (contact)
 src/main.js           # orchestration
 src/style.css         # design system (thèmes, sections, boutons…)
 src/js/theme.js       # clair / sombre (data-theme + localStorage)
@@ -73,6 +73,22 @@ docs/depth-map.md     # guide effet depth-map (préparé, non implémenté)
   si tu remplaces le fichier, garde le même cadrage ou ajuste `1.8436` en conséquence.
 - **Formulaire** : `src/js/contact.js` simule l'envoi (900 ms) ; branche ton
   backend / Formspree / API à l'endroit indiqué.
+- **Guirlande (contact)** : l'asset `public/assets/ensemble_flower.png` (colonne +
+  bandeau du haut + bouquet d'angle, coin vide en bas à droite) est posé à cheval sur le
+  coin bas droit de la section — `.contact-garland` dans `src/style.css` : `height: 113%`,
+  calé en bas à droite, donc son coin vide tombe sous le formulaire (qui masque la partie
+  passant derrière lui). Sur téléphone il est réduit à la bande au-dessus du formulaire.
+  Statique pour l'instant — l'animation viendra après.
+- **Inversion (contact)** : `src/js/invert.js` — le seuil est le haut de la section
+  contact. À chaque franchissement (descente comme remontée), on bloque d'abord le
+  scroll et on recale la position juste à l'entrée du seuil (la section remplit alors
+  tout l'écran), puis toute la page bascule lentement (`filter: invert(1)` sur `main` +
+  footer : blanc → noir, noir → blanc, guirlande et logo compris) pendant ~2,5 s, et le
+  scroll repart. Le switch ne se voit donc jamais sur le reste du site. Le blocage a
+  lieu à chaque passage, dans les deux sens. En fin de retour, le filtre est retiré
+  pour ne pas perturber les épingles (un `filter`, même à 0, crée un contenant pour
+  les `fixed`). Posé sur `main`/`footer` et pas `body` car `#progress` est en
+  `position: fixed`. `window.__invert.state()` donne l'état (debug).
 - **Depth-map** : voir `docs/depth-map.md` (guide complet, en attente de ton go).
 
 ## Notes

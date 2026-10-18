@@ -306,55 +306,60 @@
             </div>
           </div>
         </section>
-      </div>
 
-      <!-- ============ CONTACT ============ -->
-      <section id="contact" data-section>
-        <div class="container-x">
-          <div class="section-head" data-reveal>
-            <h2 class="section-title">Contact</h2>
-            <span class="section-line" aria-hidden="true"></span>
+        <!-- ============ CONTACT ============ -->
+        <!-- Formulaire calé en bas à droite ; la guirlande est l'asset
+             « ensemble_flower.png » (colonne + bandeau + bouquet d'angle),
+             posé à cheval sur le coin bas droit : son coin vide en bas à
+             droite laisse la place au formulaire. Arrangement statique pour
+             l'instant, l'animation viendra après. La guirlande passe DERRIÈRE
+             le formulaire (placée avant lui dans le DOM) et ne capte aucun
+             clic. Le logo épinglé de .logo-zone court jusqu'ici : le haut à
+             gauche reste donc libre. -->
+        <section id="contact" data-section>
+          <div class="contact-flowers" aria-hidden="true">
+            <img class="contact-garland" src="/assets/ensemble_flower.png" alt="" />
           </div>
-          <div class="contact-grid">
-            <div class="contact-infos" data-reveal>
-              <p class="contact-title">Un projet en tête ?<br />Parlons-en.</p>
-              <ul>
-                <li><span>Email</span><a href="mailto:hello@blank.studio">hello@blank.studio</a></li>
-                <li><span>Téléphone</span><a href="tel:+33184000000">+33 1 84 00 00 00</a></li>
-                <li><span>Studio</span><span>Paris 11<sup>e</sup>, France</span></li>
-                <li><span>Réseaux</span><span class="socials"><a href="#" rel="noopener">Instagram</a> · <a href="#" rel="noopener">Behance</a> · <a href="#" rel="noopener">LinkedIn</a></span></li>
-              </ul>
+
+          <form id="contact-form" novalidate>
+            <div class="contact-row">
+              <div class="field">
+                <label for="f-first">Prénom<span class="req" aria-hidden="true">*</span></label>
+                <input id="f-first" name="firstName" type="text" placeholder="Prénom" autocomplete="given-name" required />
+              </div>
+              <div class="field">
+                <label for="f-last">Nom<span class="req" aria-hidden="true">*</span></label>
+                <input id="f-last" name="lastName" type="text" placeholder="Nom" autocomplete="family-name" required />
+              </div>
             </div>
-            <form id="contact-form" data-reveal novalidate>
-              <div class="field">
-                <label for="f-name">Nom</label>
-                <input id="f-name" name="name" type="text" placeholder="Jeanne Dupont" autocomplete="name" required />
-              </div>
-              <div class="field">
-                <label for="f-email">Email</label>
-                <input id="f-email" name="email" type="email" placeholder="jeanne@studio.fr" autocomplete="email" required />
-              </div>
-              <div class="field">
-                <label for="f-budget">Budget estimé</label>
+            <div class="field">
+              <label for="f-email">Email<span class="req" aria-hidden="true">*</span></label>
+              <input id="f-email" name="email" type="email" placeholder="jeanne@studio.fr" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="f-budget">Budget</label>
+              <div class="field-select">
                 <select id="f-budget" name="budget">
-                  <option value="<5k">Moins de 5 k€</option>
-                  <option value="5-15k" selected>5 – 15 k€</option>
-                  <option value="15-50k">15 – 50 k€</option>
-                  <option value="50k+">Plus de 50 k€</option>
+                  <option value="no-idea" selected>Pas d'idée</option>
+                  <option value="-5k">Moins de 5 k€</option>
+                  <option value="5-10k">5 – 10 k€</option>
+                  <option value="10-15k">10 – 15 k€</option>
+                  <option value="15k+">Plus de 15 k€</option>
                 </select>
+                <img class="field-caret" src="/assets/triangle%20dropdown%202.png" alt="" />
               </div>
-              <div class="field">
-                <label for="f-msg">Votre projet</label>
-                <textarea id="f-msg" name="message" rows="5" placeholder="Contexte, objectifs, délais…" required></textarea>
-              </div>
-              <button type="submit" class="btn btn--primary btn--full" data-magnetic>
-                <span class="btn-label">Envoyer le brief</span>
-              </button>
-              <p id="form-status" role="status" aria-live="polite"></p>
-            </form>
-          </div>
-        </div>
-      </section>
+            </div>
+            <div class="field">
+              <label for="f-msg">Description</label>
+              <textarea id="f-msg" name="message" rows="4" placeholder="Parlez-nous de votre projet"></textarea>
+            </div>
+            <button type="submit" class="contact-submit">
+              <span class="contact-submit-label">Envoyer</span>
+            </button>
+            <p id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
     </main>
 
     <!-- ============ FOOTER ============ -->

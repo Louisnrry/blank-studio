@@ -11,6 +11,7 @@ import { initStudio } from './js/studio.js';
 import { initReveals } from './js/reveals.js';
 import { initNav } from './js/nav.js';
 import { initContact } from './js/contact.js';
+import { initInvert } from './js/invert.js';
 import { playIntro } from './js/intro.js';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -24,6 +25,7 @@ const projectsStack = initProjectsStack();
 const offres = initOffres();
 const studio = initStudio();
 initContact();
+initInvert(lenis);
 
 const year = document.querySelector('#year');
 if (year) year.textContent = String(new Date().getFullYear());
