@@ -10,7 +10,7 @@
     />
     <meta name="theme-color" content="#ffffff" id="meta-theme-color" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- Le footer utilise le wordmark texte "bLaNk" : remplace-le par ton logo Figma (SVG dans /public/logo.svg) si besoin -->
+    <!-- Le footer utilise le logo /assets/logo.png (inversé en blanc) : remplace-le par ton SVG (public/logo.svg) si besoin -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,8 +19,6 @@
     />
   </head>
   <body class="antialiased">
-
-    <div id="progress" aria-hidden="true"></div>
 
     <main>
       <!-- ============ LANDING ============ -->
@@ -363,20 +361,34 @@
     </main>
 
     <!-- ============ FOOTER ============ -->
+    <!-- Bandeau noir permanent précédé d'une grande zone blanche. Le footer fait
+         min-height: 100svh : la zone blanche absorbe la hauteur restante, donc à
+         fond de page on ne voit plus que le footer (la section contact a disparu
+         de l'écran). Pilules empilées à gauche + bloc « Un projet ? » + logo à
+         droite (décoratif — au survol, le logo recule et se redresse d'un coup
+         sec, effet tampon). Exclu de l'inversion du contact (voir
+         src/js/invert.js). -->
     <footer id="site-footer" data-section>
-      <div class="container-x">
-        <div class="footer-top" data-reveal>
-          <a href="#hero" data-scroll-to="#hero" class="footer-cta">Un projet ? <em>bLaNk</em></a>
-        </div>
-        <div class="footer-word" aria-hidden="true">bLaNk</div>
-        <div class="footer-bottom">
-          <span>© <span id="year">2026</span> bLaNk — agence fictive de démonstration</span>
-          <nav aria-label="Navigation pied de page">
-            <a href="#about" data-scroll-to="#about">About</a>
-            <a href="#projets" data-scroll-to="#projets">Projets</a>
-            <a href="#contact" data-scroll-to="#contact">Contact</a>
-          </nav>
-          <a href="#hero" data-scroll-to="#hero">Retour en haut ↑</a>
+      <div class="footer-white" aria-hidden="true"></div>
+      <div class="footer-black">
+        <div class="container-x">
+          <div class="footer-main">
+            <nav class="footer-cases" aria-label="Sections du site" data-reveal>
+              <a class="footer-case" href="#hero" data-scroll-to="#hero">Accueil</a>
+              <a class="footer-case" href="#about" data-scroll-to="#about">About</a>
+              <a class="footer-case" href="#projets" data-scroll-to="#projets">Projets</a>
+              <a class="footer-case" href="#offres" data-scroll-to="#offres">Offres</a>
+              <a class="footer-case" href="#studio" data-scroll-to="#studio">Studio</a>
+              <a class="footer-case" href="#contact" data-scroll-to="#contact">Contact</a>
+            </nav>
+            <p class="footer-cta" data-reveal>
+              Un projet&nbsp;? <img src="/assets/logo.png" alt="" aria-hidden="true" />
+            </p>
+          </div>
+          <div class="footer-legal">
+            <span>© <span id="year">2026</span> bLaNk — agence fictive</span>
+            <a href="mailto:hello@blank.studio">hello@blank.studio</a>
+          </div>
         </div>
       </div>
     </footer>

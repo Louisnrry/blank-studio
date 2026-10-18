@@ -10,7 +10,6 @@ const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matc
 //  - [data-reveal-group] : cascade sur les enfants directs
 //  - lignes .section-line : tracé horizontal au scroll (scrub)
 //  - [data-parallax] : parallaxe image (prêt pour les vrais visuels)
-//  - barre de progression globale
 export function initReveals() {
   if (reduced()) return;
 
@@ -66,12 +65,5 @@ export function initReveals() {
         },
       }
     );
-  });
-
-  // Barre de progression globale
-  gsap.to('#progress', {
-    scaleX: 1,
-    ease: 'none',
-    scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.3 },
   });
 }
