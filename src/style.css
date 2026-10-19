@@ -385,6 +385,16 @@ section[data-section] {
   object-fit: cover;
 }
 
+/* Variante logotype (cartes branding) : l'image est un logo très large — on
+   l'affiche entier (contain) sur fond blanc, sinon le recadrage « cover »
+   amputerait les lettres du logo. */
+.project-photo--logo {
+  background: #ffffff;
+}
+.project-photo--logo img {
+  object-fit: contain;
+}
+
 /* --- Texte, sous la photo --- */
 .project-meta {
   flex: none;
